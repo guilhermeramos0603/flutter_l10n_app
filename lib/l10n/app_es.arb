@@ -1,0 +1,10 @@
+{
+    "helloWorld": "Hola Mundo!",
+    "@helloWorld": {
+        "description": "El saludo convencional del programador principiante."
+    },
+    "counterDescription": "Pulse el botón para añadir un número al contador",
+    "@counterDescription": {
+        "description": "El texto sobre el mostrador."
+    }
+}
