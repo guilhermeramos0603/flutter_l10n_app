@@ -1,0 +1,10 @@
+{
+    "helloWorld": "Hello World!",
+    "@helloWorld": {
+        "description": "The conventional newborn programmer greeting"
+    },
+    "counterDescription": "Press the button to add a number to the counter",
+    "@counterDescription": {
+        "description": "The text above the counter"
+    }
+}
