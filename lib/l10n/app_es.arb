@@ -1,10 +1,8 @@
 {
-    "helloWorld": "Hola Mundo!",
-    "@helloWorld": {
-        "description": "El saludo convencional del programador principiante."
-    },
-    "counterDescription": "Pulse el botón para añadir un número al contador",
-    "@counterDescription": {
-        "description": "El texto sobre el mostrador."
-    }
+  "homePage": "Página de inicio",
+  "homeDescription": "Bienvenido a la aplicación global",
+  "aboutUs": "Sobre nosotros",
+  "settings": "Ajustes",
+  "changeLanguage": "Cambiar Idioma",
+  "about": "¡Bienvenido a nuestra compañia! Somos una organización líder en el mercado dedicada a brindar soluciones innovadoras y de alta calidad para satisfacer las necesidades de nuestros clientes."
 }
