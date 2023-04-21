@@ -1,69 +1,54 @@
 import 'package:flutter/material.dart';
+import 'package:localizationapp/classes/language_constants.dart';
+import 'package:localizationapp/router/custom_router.dart';
+import 'package:localizationapp/router/route_constants.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:localizationapp/app/pages/home_page.dart';
 
+MaterialColor currentColor = Colors.green;
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  MyApp({super.key});
-  final ValueNotifier<String> locale = ValueNotifier<String>('pt');
-  void changeLocale(String value) {
-    locale.value = value;
-    print(locale.value);
+class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+
+  static void setLocale(BuildContext context, Locale newLocale) {
+    _MyAppState? state = context.findAncestorStateOfType<_MyAppState>();
+    state?.setLocale(newLocale);
+  }
+}
+
+class _MyAppState extends State<MyApp> {
+  Locale? _locale;
+
+  setLocale(Locale locale) {
+    setState(() {
+      _locale = locale;
+    });
+  }
+
+  @override
+  void didChangeDependencies() {
+    getLocale().then((locale) => {setLocale(locale)});
+    super.didChangeDependencies();
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Internationalization App',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: currentColor,
       ),
-      locale: Locale(locale.value),
-      localizationsDelegates: localizationsDelegates(),
-      supportedLocales: supportLocales(),
-      home: const HomePageBridge(),
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
+      onGenerateRoute: CustomRouter.generatedRoute,
+      initialRoute: homeRoute,
+      locale: _locale,
     );
   }
-}
-
-class HomePageBridge extends StatelessWidget {
-  const HomePageBridge({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return HomePage(
-      title: AppLocalizations.of(context).helloWorld,
-      counterDescription: AppLocalizations.of(context).counterDescription,
-      onTapBottomBar: (int value) {
-        switch (value) {
-          case 0:
-            MyApp().changeLocale('pt');
-            break;
-          case 1:
-            MyApp().changeLocale('en');
-            break;
-          case 2:
-            MyApp().changeLocale('es');
-            break;
-        }
-      },
-    );
-  }
-}
-
-Iterable<Locale> supportLocales() {
-  return [const Locale('pt'), const Locale('en'), const Locale('es')];
-}
-
-Iterable<LocalizationsDelegate<dynamic>>? localizationsDelegates() {
-  return [
-    AppLocalizations.delegate,
-    GlobalMaterialLocalizations.delegate,
-    GlobalWidgetsLocalizations.delegate,
-    GlobalCupertinoLocalizations.delegate
-  ];
 }

@@ -1,10 +1,8 @@
 {
-    "helloWorld": "Hello World!",
-    "@helloWorld": {
-        "description": "The conventional newborn programmer greeting"
-    },
-    "counterDescription": "Press the button to add a number to the counter",
-    "@counterDescription": {
-        "description": "The text above the counter"
-    }
+  "homePage": "Home Page",
+  "homeDescription": "Welcome to Global App",
+  "aboutUs": "About Us",
+  "settings": "Settings",
+  "changeLanguage": "Change Language",
+  "about": "Welcome to our company! We are a market-leading organization dedicated to providing innovative, high-quality solutions to meet our customers' needs."
 }
